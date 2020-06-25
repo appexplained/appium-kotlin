@@ -9,8 +9,7 @@ import java.net.URL
 open class TestBase {
     protected var driver: AndroidDriver<MobileElement>? = null
     protected open var caps: DesiredCapabilities? = null
-    private val headSpinAPIToken: String = "your-api-token-here"
-    private val webDriverURL: URL = URL("https://appium-dev.headspin.io/v0/$headSpinAPIToken/wd/hub")
+    private val webDriverURL: URL = URL("http://localhost:4723/wd/hub")
 
 
     @Before

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GoogleMapsAndroidTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-25T03:38:15" hostname="Nathans-MacBook-Pro.local" time="45.591">
+  <properties/>
+  <testcase name="googleMapsTest" classname="GoogleMapsAndroidTest" time="45.591"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Jun 24, 2020 8:38:24 PM io.appium.java_client.remote.AppiumCommandExecutor$1 lambda$0
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

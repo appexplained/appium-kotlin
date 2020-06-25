@@ -8,24 +8,54 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 import java.time.Duration
 
-class GoogleNewsAndroidTest: TestBase() {
+class GoogleMapsAndroidTest: TestBase() {
     override var caps: DesiredCapabilities? = ProjectCapabilities.AndroidBaseCapabilities()
-    private val headlinesTabButton: String = "com.google.android.apps.magazines:id/tab_headlines"
+
+    // Point of Interest for Search
+    private val pointOfInterest: String = "Lincoln Memorial Reflecting Pool"
+    private val pointOfInterestTextAttribute: String = "Lincoln Memorial Circle Northwest, Washington, DC"
+
+    // Elements
+    private val firstLaunchSkipButton: String = """//*[@class="android.widget.Button" and @text="SKIP"]"""
+    private val searchBox: String = "com.google.android.apps.maps:id/search_omnibox_text_box"
+    private val searchBoxInput: String = "com.google.android.apps.maps:id/search_omnibox_edit_text"
+    private val searchOptionListElement: String = """//*[@class="android.widget.TextView" and @text="$pointOfInterestTextAttribute"]"""
+    private val resultCardTitle: String = "com.google.android.apps.maps:id/title"
+    private val photosSection: String = "Photos"
+    private val aboutSection: String = "About"
+
 
     @Test
-    fun headlinesScrollTest() {
+    fun googleMapsTest() {
 
         // Set an explicit wait of 10 seconds
         val wait = WebDriverWait(driver?.let { it }, 10)
 
-        // Tap on the Headlines tab button
-        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.id(headlinesTabButton))).click()
+        // On first launch, press the SKIP button
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(MobileBy.xpath(firstLaunchSkipButton)))[0].click()
+//        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath(firstLaunchSkipButton)))
 
-        // Scroll Down
+        // Click on the Search Box
+        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.id(searchBox))).click()
+
+        // Enter point of interest
+        val searchBoxInput = wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.id(searchBoxInput)))
+        searchBoxInput.sendKeys(pointOfInterest)
+
+        // Tap the option
+        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.xpath(searchOptionListElement))).click()
+
+        // Tap on the Card title
+        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.id(resultCardTitle))).click()
+
+        // Tap on the Photos section
+        wait.until(ExpectedConditions.presenceOfElementLocated(MobileBy.AccessibilityId(photosSection)))
+
+        // Swipe Down
         val finger: PointerInput = PointerInput(PointerInput.Kind.TOUCH, "finger")
-        val moveToStart: Interaction = finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 726, 2452)
-        val pressDown: Interaction = finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg());
-        val moveToEnd: Interaction = finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), 726, 660)
+        val moveToStart: Interaction = finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), 533, 1449)
+        val pressDown: Interaction = finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg())
+        val moveToEnd: Interaction = finger.createPointerMove(Duration.ofMillis(100), PointerInput.Origin.viewport(), 553, 538)
         val pressUp: Interaction = finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg())
 
         val swipe = Sequence(finger, 0)
@@ -35,6 +65,20 @@ class GoogleNewsAndroidTest: TestBase() {
         swipe.addAction(pressUp)
 
         driver?.let { it.perform(arrayListOf(swipe)) }
+
+        // Tap on the About section
+        driver?.let { it.findElementByAccessibilityId(aboutSection).click() }
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

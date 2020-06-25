@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GoogleNewsAndroidTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-04-26T08:55:09" hostname="Nathans-iMac.local" time="15.457">
-  <properties/>
-  <testcase name="headlinesScrollTest" classname="GoogleNewsAndroidTest" time="15.457"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Apr 26, 2020 1:55:19 AM io.appium.java_client.remote.AppiumCommandExecutor$1 lambda$0
-INFO: Detected dialect: W3C
-]]></system-err>
-</testsuite>

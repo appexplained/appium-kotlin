@@ -7,10 +7,10 @@ class ProjectCapabilities {
             caps.setCapability("autoAcceptAlerts", true)
             caps.setCapability("platformName", "Android")
             caps.setCapability("automationName", "UiAutomator2")
-            caps.setCapability("deviceName", "8ABY0H6YG")
-            caps.setCapability("udid", "8ABY0H6YG")
-            caps.setCapability("appPackage", "com.google.android.apps.magazines")
-            caps.setCapability("appActivity", "com.google.apps.dots.android.app.activity.CurrentsStartActivity")
+            caps.setCapability("deviceName", "Android Emulator")
+            caps.setCapability("platformVersion", "10")
+            caps.setCapability("appPackage", "com.google.android.apps.maps")
+            caps.setCapability("appActivity", "com.google.android.maps.MapsActivity")
             return caps
         }
     }
